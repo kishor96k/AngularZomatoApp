@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">_ZOMATO_</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/foods">Foods</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/restaurant-foods-item">Restaurant Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/restaurants-food">Restaurant Foods</a>
+        </li>
+
+      </ul>
+      <form class="d-flex">
+        <strong *ngIf="loggedUserData && loggedUserData.userName">
+          <span><img src="../assets/person-heart.svg" alt=""></span>
+          {{loggedUserData.userName}}
+        </strong>&nbsp;
+        <button type="button" class="btn btn-danger" (click)="logOffUser()"
+          *ngIf="loggedUserData && loggedUserData.userName">LogOff</button> &nbsp;
+        <button type="button" class="btn btn-info" (click)="onOpenLogin()"
+          *ngIf="!loggedUserData">Login</button>&nbsp;
+        <button type="button" class="btn btn-primary" (click)="onOpenRegister()"
+          *ngIf="!loggedUserData">Register</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+<!-- login -->
+<div class="modal" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Login User</h4>
+        <button type="button" (click)="onCloseLogin()" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row mt-2">
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="LoginObj.userName" type="text" name="name" id="name"
+              placeholder="Enter User Name">
+          </div>
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="LoginObj.password" type="password" name="number" id="number"
+              placeholder="Enter assword">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="onLoginSubmit()">Login</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- register -->
+<div class="modal" id="registerModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Register User</h4>
+        <button type="button" (click)="onCloseRegister()" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row mb-2">
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="UserObj.emailId" type="email" name="name" id="name"
+              placeholder="Enter EmailId">
+          </div>
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="UserObj.mobileNo" type="number" name="number" id="number"
+              placeholder="Enter Mobile Number">
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="UserObj.userName" type="text" name="name" id="name"
+              placeholder="Enter User Name">
+          </div>
+          <div class="col-6">
+            <input class="form-control" [(ngModel)]="UserObj.password" type="password" name="number" id="number"
+              placeholder="Enter assword">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="onRegisterSubmit()">Register</button>
+      </div>
+
+    </div>
+  </div>
+</div>

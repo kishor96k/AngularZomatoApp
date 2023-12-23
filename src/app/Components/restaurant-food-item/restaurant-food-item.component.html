@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4" *ngFor="let item of restoFoodItems">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="item.photoUrl" alt="" class="img-height">
+                            </div>
+                            <div class="col-9 text-end">
+                                {{item.menuItemName}}
+                                <br>
+                                <small>{{item.description | slice:0-20 }}</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <span><img src="../../../assets/currency-rupee.svg" alt=""></span>{{item.price}}
+                            </div>
+                            <div class="col-8 text-end">
+                                <button (click)="addToCart(item.itemID)" class="btn btn-success btn-sm cursor-pointer">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="col-12">
+                <h3>Card Items</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" *ngFor="let item of cardItems">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img [src]="item.photoUrl" alt="" class="img-small-height">
+                            </div>
+                            <div class="col-8 text-end">
+                                {{item.menuItemName}}
+                                <br>
+                                <span><img src="../../../assets/currency-rupee.svg" alt=""></span>
+                                {{item.price}} X {{item.quantity}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" *ngIf="cardItems.length===0">
+                <p>Sorry Cart is empty now!!!!</p>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!cardItems">
+            <div class="col-12 text-end" >
+                <h2> TOTAL =>{{totalAmount}}</h2>
+            </div>
+            <div class="col-12">
+                <textarea name="" id="" placeholder="Enter Your Address" cols="10" rows="02" class="form-control"
+                    [(ngModel)]="deliveryAddress">
+                </textarea>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="" *ngIf="restoFoodItems.length===0">
+        <strong>Sorry!!!...Currently no food type is availabile for this item.</strong>
+    </div>
+</div>
